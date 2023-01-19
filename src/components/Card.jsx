@@ -21,7 +21,9 @@ export const Card = ({ data }) => {
         <p className={styles.mb0}>
           {" "}
           <DateComponent data={data} />
-          <span className={styles.favorite}>Favorite</span>
+          <span className={styles.favorite}>
+            {data.favorite ? "Favorite" : ""}
+          </span>
         </p>
       </div>
     </section>
