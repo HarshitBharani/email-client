@@ -12,3 +12,6 @@ body {
   background-color: var(--background-color);
   color: var(--text-color);
 }
+.mainContainer {
+  padding: 1rem 3rem;
+}

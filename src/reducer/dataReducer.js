@@ -17,6 +17,11 @@ export const DataReducer = (state, { type, payload }) => {
           favorite: false,
         })),
       };
+    case "ADD_FILTER":
+      return {
+        ...state,
+        filter: payload,
+      };
     default:
       return state;
   }
