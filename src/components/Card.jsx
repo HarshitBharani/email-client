@@ -3,7 +3,7 @@ import { useData } from "../context/DataContext";
 import styles from "./card.module.css";
 import { DateComponent } from "./Date";
 export const Card = ({ data }) => {
-  const { dispatch, body } = useData();
+  const { dispatch } = useData();
 
   async function addRead(id) {
     const { data: bodyData } = await axios.get(
