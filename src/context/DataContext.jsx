@@ -33,7 +33,8 @@ export function DataProvider({ children }) {
         emailData: state.emailData,
         apiData: state.apiData,
         filter: state.filter,
-
+        pageno: state.pageno,
+        body: state.body,
         dispatch,
       }}
     >

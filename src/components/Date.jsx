@@ -12,5 +12,5 @@ export const DateComponent = ({ data }) => {
   const minutes =
     date.getMinutes() < 10 ? "0" + date.getMinutes() : date.getMinutes();
   const time = hours + ":" + minutes + am_pm;
-  return <span>{ddmmyyyy + " " + time}</span>;
+  return <span style={{ fontSize: "14px" }}>{ddmmyyyy + " " + time}</span>;
 };

@@ -4,8 +4,12 @@ import "./App.css";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { useData } from "./context/DataContext";
-import { Card } from "./components/Card";
+
 import { Filter } from "./components/Filter";
+import { CardLayout } from "./components/CardLayout";
+import { Body } from "./components/EmailBody";
+import { Homepage } from "./components/Homepage";
+import { Pageno } from "./components/Pageno";
 
 function App() {
   const data = useData();
@@ -13,9 +17,8 @@ function App() {
   return (
     <div className="mainContainer">
       <Filter />
-      {data.emailData.map((item) => (
-        <Card data={item} />
-      ))}
+      <Homepage />
+      <Pageno />
     </div>
   );
 }

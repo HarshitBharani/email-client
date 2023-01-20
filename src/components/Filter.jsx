@@ -38,6 +38,9 @@ export const Filter = () => {
         >
           Favorites
         </li>
+        <li className={styles.filterButton} onClick={() => addFilterData("")}>
+          Clear Filter
+        </li>
       </ul>
     </>
   );

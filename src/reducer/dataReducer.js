@@ -3,6 +3,7 @@ export const intialState = {
   pageno: 1,
   emailData: [],
   filter: "",
+  bodyData: "",
 };
 export const DataReducer = (state, { type, payload }) => {
   switch (type) {
@@ -13,7 +14,7 @@ export const DataReducer = (state, { type, payload }) => {
         ...state,
         emailData: state.apiData.map((obj) => ({
           ...obj,
-          Read: false,
+          read: false,
           favorite: false,
         })),
       };
@@ -22,6 +23,28 @@ export const DataReducer = (state, { type, payload }) => {
         ...state,
         filter: payload,
       };
+    case "EMAIL_READ":
+      return {
+        ...state,
+        emailData: state.emailData.map((item) =>
+          item.id === payload ? { ...item, read: true } : item
+        ),
+      };
+    case "UPDATE_BODY":
+      return {
+        ...state,
+        body: payload,
+      };
+    case "TOGGLE_FAVORITES":
+      return {
+        ...state,
+        emailData: state.emailData.map((item) =>
+          item.id === payload ? { ...item, favorite: true } : item
+        ),
+      };
+    case "CHANGE_PAGENO":
+      return { ...state, pageno: payload };
+
     default:
       return state;
   }
