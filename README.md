@@ -1,5 +1,5 @@
 # Description 
-This is an email client app similar to your gmail it was a frontend test for the company in this project i built a email client app which has features such as filter messages on favorite, read, unread category and view email by cllick which shows the body of the email
+This is an email client app similar to your gmail it was a frontend test for the company in this project i built a email client app which has features such as filter messages on favorite, read, unread category and view email by cllick which shows the body of the email and this web app also have the pagination capability by which the component is added to the pagination 
 
 # Requiremts and features given by the company to build:-
 1. Render all emails page using the API
