@@ -1,11 +1,28 @@
-export const intialState = {
+interface ApiData {
+  id: string;
+  from: { email: string; name: string };
+  date: Date;
+  short_description: string;
+  subject: string;
+}
+interface StateInterface {
+  apiData: ApiData[];
+  pageno: number;
+  emailData: ApiData[];
+  filter: string;
+  bodyData: string;
+}
+export const intialState: StateInterface = {
   apiData: [],
   pageno: 1,
   emailData: [],
   filter: "",
   bodyData: "",
 };
-export const DataReducer = (state, { type, payload }) => {
+export const DataReducer = (
+  state: StateInterface,
+  { type, payload }: { type: string; payload: string }
+) => {
   switch (type) {
     case "INITIALIZE_DATA":
       return { ...state, apiData: payload };

@@ -13,7 +13,7 @@ export function DataProvider({ children }) {
         const {
           data: { list },
         } = await axios.get("https://flipkart-email-mock.now.sh/");
-
+        console.log(list);
         dispatch({
           type: "INITIALIZE_DATA",
           payload: list,
