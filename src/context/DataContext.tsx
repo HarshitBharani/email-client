@@ -1,12 +1,30 @@
 import axios from "axios";
-import { createContext, useContext, useReducer, useEffect } from "react";
-import { DataReducer, intialState } from "../reducer/dataReducer";
+import React, {
+  createContext,
+  useContext,
+  useReducer,
+  useEffect,
+  PropsWithChildren,
+} from "react";
+import {
+  DataReducer,
+  DispatchActions,
+  EmailDataType,
+  intialState,
+} from "../reducer/dataReducer";
+import { CreateContext } from "./Createcontext";
+type DataContextProps = {
+  emailData: EmailDataType[];
 
-const DataContext = createContext();
-export const useData = () => useContext(DataContext);
-
-export function DataProvider({ children }) {
+  filter: string;
+  pageno: number;
+  body: string;
+  dispatch: React.Dispatch<DispatchActions>;
+};
+export const [useData, DataContextProvider] = CreateContext<DataContextProps>();
+export function DataProvider({ children }: PropsWithChildren<"">) {
   const [state, dispatch] = useReducer(DataReducer, intialState);
+
   useEffect(() => {
     (async function () {
       try {
@@ -28,10 +46,9 @@ export function DataProvider({ children }) {
   }, []);
 
   return (
-    <DataContext.Provider
+    <DataContextProvider
       value={{
         emailData: state.emailData,
-        apiData: state.apiData,
         filter: state.filter,
         pageno: state.pageno,
         body: state.body,
@@ -39,6 +56,6 @@ export function DataProvider({ children }) {
       }}
     >
       {children}
-    </DataContext.Provider>
+    </DataContextProvider>
   );
 }

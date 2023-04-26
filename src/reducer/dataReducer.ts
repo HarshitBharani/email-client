@@ -1,31 +1,41 @@
-interface ApiData {
+export type ApiData = {
   id: string;
   from: { email: string; name: string };
   date: Date;
   short_description: string;
   subject: string;
-}
-interface StateInterface {
+};
+export type EmailDataType = ApiData & { read: boolean; favorite: boolean };
+type StateType = {
   apiData: ApiData[];
   pageno: number;
-  emailData: ApiData[];
+  emailData: EmailDataType[];
   filter: string;
-  bodyData: string;
-}
-export const intialState: StateInterface = {
+  body: string;
+};
+export const intialState: StateType = {
   apiData: [],
   pageno: 1,
   emailData: [],
   filter: "",
-  bodyData: "",
+  body: "",
 };
+export type DispatchActions =
+  | { type: "INITIALIZE_DATA"; payload: ApiData[] }
+  | { type: "ADD_EMAILDATA" }
+  | { type: "ADD_FILTER"; payload: string }
+  | { type: "EMAIL_READ"; payload: string }
+  | { type: "UPDATE_BODY"; payload: string }
+  | { type: "TOGGLE_FAVORITES"; payload: string }
+  | { type: "CHANGE_PAGENO"; payload: number };
+
 export const DataReducer = (
-  state: StateInterface,
-  { type, payload }: { type: string; payload: string }
-) => {
-  switch (type) {
+  state: StateType,
+  action: DispatchActions
+): StateType => {
+  switch (action.type) {
     case "INITIALIZE_DATA":
-      return { ...state, apiData: payload };
+      return { ...state, apiData: action.payload };
     case "ADD_EMAILDATA":
       return {
         ...state,
@@ -38,29 +48,29 @@ export const DataReducer = (
     case "ADD_FILTER":
       return {
         ...state,
-        filter: payload,
+        filter: action.payload,
       };
     case "EMAIL_READ":
       return {
         ...state,
         emailData: state.emailData.map((item) =>
-          item.id === payload ? { ...item, read: true } : item
+          item.id === action.payload ? { ...item, read: true } : item
         ),
       };
     case "UPDATE_BODY":
       return {
         ...state,
-        body: payload,
+        body: action.payload,
       };
     case "TOGGLE_FAVORITES":
       return {
         ...state,
         emailData: state.emailData.map((item) =>
-          item.id === payload ? { ...item, favorite: true } : item
+          item.id === action.payload ? { ...item, favorite: true } : item
         ),
       };
     case "CHANGE_PAGENO":
-      return { ...state, pageno: payload };
+      return { ...state, pageno: action.payload };
 
     default:
       return state;
