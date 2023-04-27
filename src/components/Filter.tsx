@@ -1,9 +1,10 @@
+import React from "react";
 import { useData } from "../context/DataContext";
 import styles from "./filter.module.css";
 
 export const Filter = () => {
   const { filter, dispatch } = useData();
-  function addFilterData(filter) {
+  function addFilterData(filter: string) {
     dispatch({
       type: "ADD_FILTER",
       payload: filter,

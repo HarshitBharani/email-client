@@ -1,3 +1,4 @@
+import React from "react";
 import { useData } from "../context/DataContext";
 import { DateComponent } from "./Date";
 import styles from "./EmailBody.module.css";
@@ -10,6 +11,7 @@ export const EmailBody = () => {
       payload: body.id,
     });
   };
+
   const email = emailData.filter((item) => item.id === body.id)[0];
   console.log(email);
   return (

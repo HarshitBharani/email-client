@@ -11,21 +11,22 @@ type StateType = {
   pageno: number;
   emailData: EmailDataType[];
   filter: string;
-  body: string;
+  body: BodyDataType;
 };
+type BodyDataType = { id: string; body: string };
 export const intialState: StateType = {
   apiData: [],
   pageno: 1,
   emailData: [],
   filter: "",
-  body: "",
+  body: { id: "", body: "" },
 };
 export type DispatchActions =
   | { type: "INITIALIZE_DATA"; payload: ApiData[] }
   | { type: "ADD_EMAILDATA" }
   | { type: "ADD_FILTER"; payload: string }
   | { type: "EMAIL_READ"; payload: string }
-  | { type: "UPDATE_BODY"; payload: string }
+  | { type: "UPDATE_BODY"; payload: BodyDataType }
   | { type: "TOGGLE_FAVORITES"; payload: string }
   | { type: "CHANGE_PAGENO"; payload: number };
 

@@ -1,9 +1,10 @@
+import React from "react";
 import { useData } from "../context/DataContext";
 import { Card } from "./Card";
 
 export const CardLayout = () => {
   const { filter, emailData, pageno } = useData();
-  let data;
+  let data = emailData;
   switch (filter) {
     case "":
       data = emailData;

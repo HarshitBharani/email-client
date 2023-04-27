@@ -1,11 +1,5 @@
 import axios from "axios";
-import React, {
-  createContext,
-  useContext,
-  useReducer,
-  useEffect,
-  PropsWithChildren,
-} from "react";
+import React, { useReducer, useEffect, PropsWithChildren } from "react";
 import {
   DataReducer,
   DispatchActions,
@@ -18,11 +12,12 @@ type DataContextProps = {
 
   filter: string;
   pageno: number;
-  body: string;
+  body: { id: string; body: string };
   dispatch: React.Dispatch<DispatchActions>;
 };
 export const [useData, DataContextProvider] = CreateContext<DataContextProps>();
-export function DataProvider({ children }: PropsWithChildren<"">) {
+
+export function DataProvider({ children }: PropsWithChildren) {
   const [state, dispatch] = useReducer(DataReducer, intialState);
 
   useEffect(() => {
@@ -31,7 +26,7 @@ export function DataProvider({ children }: PropsWithChildren<"">) {
         const {
           data: { list },
         } = await axios.get("https://flipkart-email-mock.now.sh/");
-        console.log(list);
+
         dispatch({
           type: "INITIALIZE_DATA",
           payload: list,

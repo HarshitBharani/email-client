@@ -1,3 +1,4 @@
+import React from "react";
 import { useData } from "../context/DataContext";
 import { EmailBody } from "./EmailBody";
 import { CardLayout } from "./CardLayout";
@@ -10,7 +11,7 @@ export const Homepage = () => {
       <div className={styles.blo}>
         <CardLayout />
       </div>
-      {body && <EmailBody />}
+      {body.id && <EmailBody />}
     </div>
   );
 };
